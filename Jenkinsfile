@@ -45,17 +45,15 @@ volumes: [
     stage('Code coverage') {
       container('gradle') {
           sh """
-            pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
             cd src/adservice
             ./gradlew jacocoTestReport
 
-
             """
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'build/reports/jacoco/test/html', reportFiles: 'index.html', reportName: 'ADService HTML Report', reportTitles: 'tittle'])
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'src/adservice/build/reports/jacoco/test/html', reportFiles: 'index.html', reportName: 'ADService HTML Report', reportTitles: 'tittle'])
 
-            sh "cd src/adservice && ./gradlew jacocoTestCoverageVerification"
+          sh "cd src/adservice && ./gradlew jacocoTestCoverageVerification"
       }
     }
 
@@ -72,5 +70,6 @@ volumes: [
         }
       }
     }
+
   }
 }
