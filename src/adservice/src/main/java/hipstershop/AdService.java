@@ -341,7 +341,7 @@ public final class AdService {
 
     // Start the RPC server. You shouldn't see any output from gRPC before this.
     logger.info("AdService starting.");
-    Thread.sleep(3000);
+   // Thread.sleep(3000);
     exampleHttpRequestsTotal.inc();
     while(i<3000){
       exampleHttpRequestsTotal.inc();
