@@ -200,7 +200,7 @@ public final class AdService {
     Ad camera =
         Ad.newBuilder()
             .setRedirectUrl("/product/2ZYFJ3GM2N")
-            .setText("Film camera for sale. 50% off.")
+            .setText("Film camera for sale. 80% off.")
             .build();
     Ad lens =
         Ad.newBuilder()
