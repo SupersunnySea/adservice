@@ -72,7 +72,7 @@ volumes: [
 
     stage('Push Docker Images') {
       container('docker') {
-        //config
+        //confi
         docker.withRegistry('https://475762907367.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:my_ecr_id') {
             sh """    
             docker push 475762907367.dkr.ecr.ap-southeast-1.amazonaws.com/adservice:${gitCommit}
