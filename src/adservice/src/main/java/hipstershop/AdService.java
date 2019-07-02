@@ -214,7 +214,7 @@ public final class AdService {
     Ad camera =
         Ad.newBuilder()
             .setRedirectUrl("/product/2ZYFJ3GM2N")
-            .setText("Film camera for sale. 50% off.")
+            .setText("Film camera for sale. 80% off.")
             .build();
     Ad lens =
         Ad.newBuilder()
@@ -372,7 +372,7 @@ public final class AdService {
 
     // Start the RPC server. You shouldn't see any output from gRPC before this.
     logger.info("AdService starting.");
-    Thread.sleep(3000);
+   // Thread.sleep(3000);
     exampleHttpRequestsTotal.inc();
     while(i<3000){
       exampleHttpRequestsTotal.inc();

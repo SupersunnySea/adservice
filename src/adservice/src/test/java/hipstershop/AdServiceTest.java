@@ -26,7 +26,7 @@ public class AdServiceTest {
         hipstershop.Demo.Ad camera =
                 hipstershop.Demo.Ad.newBuilder()
                         .setRedirectUrl("/product/2ZYFJ3GM2N")
-                        .setText("Film camera for sale. 50% off.")
+                        .setText("Film camera for sale. 80% off.")
                         .build();
         hipstershop.Demo.Ad lens =
                 hipstershop.Demo.Ad.newBuilder()
@@ -138,7 +138,7 @@ public class AdServiceTest {
         hipstershop.Demo.Ad camera =
                 hipstershop.Demo.Ad.newBuilder()
                         .setRedirectUrl("/product/2ZYFJ3GM2N")
-                        .setText("Film camera for sale. 50% off.")
+                        .setText("Film camera for sale. 80% off.")
                         .build();
         hipstershop.Demo.Ad lens =
                 hipstershop.Demo.Ad.newBuilder()
