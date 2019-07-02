@@ -168,6 +168,20 @@ public final class AdService {
     }
   }
 
+
+  public static void getAds2() {
+    exampleHttpRequestsTotal.inc();
+    exampleHttpRequests.inc();
+    Histogram.Timer requestTimerHistogram = exampleRequestLatencyHistogram.startTimer();
+    Summary.Timer requestTimerSummary = exampleRequestLatencySummary.startTimer();
+
+
+
+    exampleHttpRequests.dec();
+    requestTimerHistogram.observeDuration();
+    requestTimerSummary.observeDuration();
+  }
+
   private static final ImmutableListMultimap<String, Ad> adsMap = createAdsMap();
 
   public Collection<Ad> getAdsByCategory(String category) {
@@ -335,6 +349,23 @@ public final class AdService {
               }
             })
         .start();
+
+    new Thread(
+            new Runnable() {
+              public void run() {
+                int j=0;
+                while(true){
+                  getAds2();
+                  try {
+                    Thread.sleep((int)(Math.random()*500));
+                  } catch (InterruptedException e) {
+                    e.printStackTrace();
+                  }
+                }
+              }
+            })
+            .start();
+
 
     // Register Jaeger
     initJaeger();

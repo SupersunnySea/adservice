@@ -128,11 +128,9 @@ public class AdServiceTest {
 //        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-//        boolean stop=false;
-//        assertFalse(stop);
+//
 //        adservice.stop();
-//        stop=adservice.server.isShutdown();
-//        assertTrue(stop);
+//        assertEquals(server,);
 //    }
 
     @Test
