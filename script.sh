@@ -5,4 +5,4 @@ echo $PATH
 
 hostname
 
-ifconfig -a
+cat /etc/resolv.conf
