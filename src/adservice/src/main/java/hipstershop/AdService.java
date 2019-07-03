@@ -368,7 +368,7 @@ public final class AdService {
 //                while(true){
 //                  getAds2();
 //                  try {
-//                    Thread.sleep((int)(Math.random()*500));
+//                    Thread.sleep((int)(Math.random()*500));dede
 //                  } catch (InterruptedException e) {
 //                    e.printStackTrace();dd
 //                  }
