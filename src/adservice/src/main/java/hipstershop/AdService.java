@@ -388,6 +388,7 @@ public final class AdService {
 //      exampleHttpRequestsTotal.inc();
 //      i++;
 //    }
+    //trigger
     final AdService service = AdService.getInstance();
     service.start();
     service.blockUntilShutdown();
