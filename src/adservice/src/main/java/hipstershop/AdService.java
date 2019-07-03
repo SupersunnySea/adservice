@@ -370,7 +370,7 @@ public final class AdService {
 //                  try {
 //                    Thread.sleep((int)(Math.random()*500));
 //                  } catch (InterruptedException e) {
-//                    e.printStackTrace();
+//                    e.printStackTrace();dd
 //                  }
 //                }
 //              }
