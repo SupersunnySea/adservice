@@ -66,6 +66,12 @@ public final class AdService {
           .name("example_http_requests").help("example http requests.").register();
   static final Histogram exampleRequestLatencyHistogram = Histogram.build()
           .name("example_requests_latency_seconds").help("Request latency in seconds.").register();
+  static final Counter exampleHttpRequestsSuccess = Counter.build()
+          .name("example_http_requests_success").help("example http requests success.").register();
+  static final Counter exampleHttpRequestsFail = Counter.build()
+          .name("example_http_requests_fail").help("example http requests fail.").register();
+  static final Gauge exampleServiceCount = Gauge.build()
+          .name("example_service_count").help("example service count.").register();
 
   private static final Logger logger = LogManager.getLogger(AdService.class);
   private static final Tracer tracer = Tracing.getTracer();
@@ -77,6 +83,7 @@ public final class AdService {
   private static final AdService service = new AdService();
 
   public void start() throws IOException {
+    exampleServiceCount.inc();
     int port = Integer.parseInt(System.getenv("PORT"));
     healthMgr = new HealthStatusManager();
 
@@ -153,8 +160,10 @@ public final class AdService {
         AdResponse reply = AdResponse.newBuilder().addAllAds(allAds).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
+        exampleHttpRequestsSuccess.inc();
       } catch (StatusRuntimeException e) {
         logger.log(Level.WARN, "GetAds Failed", e.getStatus());
+        exampleHttpRequestsFail.inc();
         responseObserver.onError(e);
       }
       try {
@@ -205,6 +214,7 @@ public final class AdService {
 
   /** Await termination on the main thread since the grpc library uses daemon threads. */
   private void blockUntilShutdown() throws InterruptedException {
+    exampleServiceCount.dec();
     if (server != null) {
       server.awaitTermination();
     }
@@ -310,11 +320,11 @@ public final class AdService {
 
   /** Main launches the server from the command line. */
   public static void main(String[] args) throws IOException, InterruptedException {
-    int i=0;
-    while(i<1000){
-      exampleHttpRequestsTotal.inc();
-      i++;
-    }
+//    int i=0;
+//    while(i<1000){
+//      exampleHttpRequestsTotal.inc();
+//      i++;
+//    }
 
 
     org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(8001);
@@ -324,7 +334,7 @@ public final class AdService {
     // Expose Promtheus metrics.
     context.addServlet(new ServletHolder(new MetricsServlet()), "/metrics");
     // Add metrics about CPU, JVM memory etc.
-    DefaultExports.initialize();
+    //DefaultExports.initialize();
 
     // Start the webserver.
     try {
@@ -350,21 +360,21 @@ public final class AdService {
             })
         .start();
 
-    new Thread(
-            new Runnable() {
-              public void run() {
-                int j=0;
-                while(true){
-                  getAds2();
-                  try {
-                    Thread.sleep((int)(Math.random()*500));
-                  } catch (InterruptedException e) {
-                    e.printStackTrace();
-                  }
-                }
-              }
-            })
-            .start();
+//    new Thread(
+//            new Runnable() {
+//              public void run() {
+//                int j=0;
+//                while(true){
+//                  getAds2();
+//                  try {
+//                    Thread.sleep((int)(Math.random()*500));
+//                  } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                  }
+//                }
+//              }
+//            })
+//            .start();
 
 
     // Register Jaeger
@@ -373,11 +383,11 @@ public final class AdService {
     // Start the RPC server. You shouldn't see any output from gRPC before this.
     logger.info("AdService starting.");
    // Thread.sleep(3000);
-    exampleHttpRequestsTotal.inc();
-    while(i<3000){
-      exampleHttpRequestsTotal.inc();
-      i++;
-    }
+//    exampleHttpRequestsTotal.inc();
+//    while(i<3000){
+//      exampleHttpRequestsTotal.inc();
+//      i++;
+//    }
     final AdService service = AdService.getInstance();
     service.start();
     service.blockUntilShutdown();
