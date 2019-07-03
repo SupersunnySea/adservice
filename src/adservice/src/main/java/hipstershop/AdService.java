@@ -70,8 +70,10 @@ public final class AdService {
           .name("example_http_requests_success").help("example http requests success.").register();
   static final Counter exampleHttpRequestsFail = Counter.build()
           .name("example_http_requests_fail").help("example http requests fail.").register();
-  static final Gauge exampleServiceCount = Gauge.build()
+  static final Counter exampleServiceCount = Counter.build()
           .name("example_service_count").help("example service count.").register();
+  static final Gauge exampleService = Gauge.build()
+          .name("example_service").help("example service.").register();
 
   private static final Logger logger = LogManager.getLogger(AdService.class);
   private static final Tracer tracer = Tracing.getTracer();
@@ -84,6 +86,7 @@ public final class AdService {
 
   public void start() throws IOException {
     exampleServiceCount.inc();
+    exampleService.inc();
     int port = Integer.parseInt(System.getenv("PORT"));
     healthMgr = new HealthStatusManager();
 
@@ -184,8 +187,6 @@ public final class AdService {
     Histogram.Timer requestTimerHistogram = exampleRequestLatencyHistogram.startTimer();
     Summary.Timer requestTimerSummary = exampleRequestLatencySummary.startTimer();
 
-
-
     exampleHttpRequests.dec();
     requestTimerHistogram.observeDuration();
     requestTimerSummary.observeDuration();
@@ -214,7 +215,7 @@ public final class AdService {
 
   /** Await termination on the main thread since the grpc library uses daemon threads. */
   private void blockUntilShutdown() throws InterruptedException {
-    exampleServiceCount.dec();
+    exampleService.dec();
     if (server != null) {
       server.awaitTermination();
     }
@@ -383,11 +384,12 @@ public final class AdService {
     // Start the RPC server. You shouldn't see any output from gRPC before this.
     logger.info("AdService starting.");
    // Thread.sleep(3000);
-//    exampleHttpRequestsTotal.inc();
-//    while(i<3000){
-//      exampleHttpRequestsTotal.inc();
-//      i++;
-//    }
+    exampleHttpRequestsTotal.inc();
+    int i=0;
+    while(i<3000){
+      exampleHttpRequestsTotal.inc();
+      i++;
+    }
     //trigger
     final AdService service = AdService.getInstance();
     service.start();
