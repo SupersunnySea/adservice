@@ -342,7 +342,7 @@ public final class AdService {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    // Registers all RPC views.
+    // Registers all RPC views.sw
     /**
      * [TODO:rghetia] replace registerAllViews with registerAllGrpcViews.
      * registerAllGrpcViews registers new views using new measures however current grpc version records against
