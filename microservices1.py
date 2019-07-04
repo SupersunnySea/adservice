@@ -13,7 +13,7 @@ def test_microservices(url):
     option.add_argument('-headless')
     option.add_argument('--no-sandbox')
     option.add_argument('--start-maximized')
-    firfoxdriver = '/usr/bin/firefox'
+    firfoxdriver = '/usr/lib64/firefox/firefox'
     binary = FirefoxBinary(firfoxdriver)
     driver = webdriver.Firefox(firefox_binary=binary,executable_path='./geckodriver', options=option)
 
