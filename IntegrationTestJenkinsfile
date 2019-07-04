@@ -1,6 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
+  containerTemplate(name: 'python', image: 'rackspacedot/python37-ansible23', privileged: true, command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', privileged: true, command: 'cat', ttyEnabled: true)
 ],
 volumes: [
