@@ -15,8 +15,8 @@ tar -xvf firefox-67.0.4.tar.bz2
 
 rm -rf /usr/lib64/firefox
 mv firefox /usr/lib64
-rm /usr/bin/firefox
 ln -s /usr/lib64/firefox/firefox /usr/bin/firefox
+firefox -v
 
 pip3 install selenium
 wget https://github.com/mozilla/geckodriver/releases/download/v0.15.0/geckodriver-v0.15.0-linux64.tar.gz
