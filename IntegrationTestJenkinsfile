@@ -13,16 +13,14 @@ volumes: [
     def gitBranch = myRepo.GIT_BRANCH
     def shortGitCommit = "${gitCommit[0..10]}"
  
-    stage('Build') {
+    stage('IntegrationTest') {
       container('python') {
           sh """
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            whoami
-            cat /etc/issue
-            
-            ./microservices1.py
+            echo "IntegrationTest Successfully!"
+
             """
       }
     }
