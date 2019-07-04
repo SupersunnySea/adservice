@@ -17,14 +17,21 @@ mv firefox /usr/lib64
 ln -s /usr/lib64/firefox/firefox /usr/bin/firefox
 chmod a+x /usr/lib64/firefox/firefox
 
+#touch /etc/apt/sources.list.d/debian-mozilla.list
+#deb http://mozilla.debian.net/ jessie-backports firefox-release
+#wget mozilla.debian.net/pkg-mozilla-archive-keyring_1.1_all.deb
+#dpkg -i pkg-mozilla-archive-keyring_1.1_all.deb
+#apt-get update
+#apt-get install -t jessie-backports firefox
+
 echo $PATH
  
 firefox -v
 
 pip3 install selenium
-wget https://github.com/mozilla/geckodriver/releases/download/v0.15.0/geckodriver-v0.15.0-linux64.tar.gz
+wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
 
-tar -zxvf geckodriver-v0.15.0-linux64.tar.gz
+tar -zxvf geckodriver-v0.24.0-linux64.tar.gz
 mv ./geckodriver /usr/local/bin/
 chmod a+x /usr/local/bin/geckodriver
 #geckodriver
