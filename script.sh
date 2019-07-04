@@ -29,4 +29,7 @@ mv ./geckodriver /usr/local/bin/
 chmod a+x /usr/local/bin/geckodriver
 #geckodriver
 
+lsb_release -a
+cat /etc/issue
+
 ./microservices1.py
