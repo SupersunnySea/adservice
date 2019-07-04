@@ -15,12 +15,12 @@ volumes: [
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
  
     stage('Build') {
-      container('docker') {
+      container('python') {
           sh """
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            cd src/adservice
+            ./microservices1.py
             """
       }
     }
