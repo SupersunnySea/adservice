@@ -19,9 +19,9 @@ volumes: [
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            lsb_release -a
-            cat /etc/issue
             whoami
+            cat /etc/issue
+            
             ./microservices1.py
             """
       }
