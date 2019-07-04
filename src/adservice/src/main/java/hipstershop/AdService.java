@@ -230,7 +230,7 @@ public final class AdService {
     Ad lens =
         Ad.newBuilder()
             .setRedirectUrl("/product/66VCHSJNUP")
-            .setText("Vintage camera lens for sale. 20% off.")
+            .setText("Vintage camera lens for sale. 25% off.")
             .build();
     Ad recordPlayer =
         Ad.newBuilder()
