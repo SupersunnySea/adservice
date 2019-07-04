@@ -29,57 +29,5 @@ volumes: [
       }
     }
 
-    stage('Unit Test') {
-      container('gradle') {
-          sh """
-            pwd
-            echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
-            echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            cd src/adservice
-            ./gradlew installDist
-            ./gradlew test
-            """
-      }
-    }
-
-    stage('Code coverage') {
-      container('gradle') {
-          sh """
-            echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
-            echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            cd src/adservice
-            ./gradlew jacocoTestReport
-
-            """
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'src/adservice/build/reports/jacoco/test/html', reportFiles: 'index.html', reportName: 'ADService HTML Report', reportTitles: 'tittle'])
-
-          sh "cd src/adservice && ./gradlew jacocoTestCoverageVerification"
-      }
-    }
-
-
-    stage('Create Docker Images') {
-      container('docker') {
-        //confi
-        docker.withRegistry('https://475762907367.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:my_ecr_id') {
-            sh """    
-            cd src/adservice
-            docker build --network=host -t 475762907367.dkr.ecr.ap-southeast-1.amazonaws.com/adservice:${gitCommit} .
-            """
-        }
-      }
-    }
-
-    stage('Push Docker Images') {
-      container('docker') {
-        //config
-        docker.withRegistry('https://475762907367.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:my_ecr_id') {
-            sh """    
-            docker push 475762907367.dkr.ecr.ap-southeast-1.amazonaws.com/adservice:${gitCommit}
-            """
-        }
-      }
-    }
-
   }
 }
