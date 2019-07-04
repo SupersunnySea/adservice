@@ -12,8 +12,7 @@ def test_microservices(url):
     option.add_argument('-headless')
     option.add_argument('--no-sandbox')
     option.add_argument('--start-maximized')
-    firefox_binary = FirefoxBinary('./firefox/')
-    driver = webdriver.Firefox(executable_path='./geckodriver', options=option,firefox_binary=firefox_binary)
+    driver = webdriver.Firefox(executable_path='./geckodriver', options=option)
 
     driver.get(url)
     wait = WebDriverWait(driver, 50)\
