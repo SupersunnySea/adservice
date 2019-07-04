@@ -1,7 +1,6 @@
 #!/bin/sh
 #coding=utf8
 set -v on
-echo $PATH
 
 hostname
 cat /etc/resolv.conf
@@ -16,6 +15,10 @@ tar -xvf firefox-67.0.4.tar.bz2
 rm -rf /usr/lib64/firefox
 mv firefox /usr/lib64
 ln -s /usr/lib64/firefox/firefox /usr/bin/firefox
+source  /etc/profile
+
+echo $PATH
+ 
 firefox -v
 
 pip3 install selenium
