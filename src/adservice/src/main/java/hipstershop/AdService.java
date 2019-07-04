@@ -321,11 +321,6 @@ public final class AdService {
 
   /** Main launches the server from the command line. */
   public static void main(String[] args) throws IOException, InterruptedException {
-//    int i=0;
-//    while(i<1000){
-//      exampleHttpRequestsTotal.inc();
-//      i++;
-//    }
 
 
     org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(8001);
@@ -383,14 +378,6 @@ public final class AdService {
 
     // Start the RPC server. You shouldn't see any output from gRPC before this.
     logger.info("AdService starting.");
-   // Thread.sleep(3000);
-    exampleHttpRequestsTotal.inc();
-    int i=0;
-    while(i<3000){
-      exampleHttpRequestsTotal.inc();
-      i++;
-    }
-    //trigger
     final AdService service = AdService.getInstance();
     service.start();
     service.blockUntilShutdown();
