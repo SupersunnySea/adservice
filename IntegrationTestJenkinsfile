@@ -12,7 +12,6 @@ volumes: [
     def gitCommit = myRepo.GIT_COMMIT
     def gitBranch = myRepo.GIT_BRANCH
     def shortGitCommit = "${gitCommit[0..10]}"
-    def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
  
     stage('Build') {
       container('python') {
@@ -20,6 +19,9 @@ volumes: [
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
+            lsb_release -a
+            cat /etc/issue
+            whoami
             ./microservices1.py
             """
       }
