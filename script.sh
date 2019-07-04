@@ -4,7 +4,7 @@ set -v on
 
 hostname
 cat /etc/resolv.conf
-
+uname -a
 python -V
 
 pwd
@@ -15,7 +15,7 @@ tar -xvf firefox-67.0.4.tar.bz2
 rm -rf /usr/lib64/firefox
 mv firefox /usr/lib64
 ln -s /usr/lib64/firefox/firefox /usr/bin/firefox
-source  /etc/profile
+chmod a+x /usr/lib64/firefox/firefox
 
 echo $PATH
  
@@ -25,5 +25,8 @@ pip3 install selenium
 wget https://github.com/mozilla/geckodriver/releases/download/v0.15.0/geckodriver-v0.15.0-linux64.tar.gz
 
 tar -zxvf geckodriver-v0.15.0-linux64.tar.gz
+mv ./geckodriver /usr/local/bin/
+chmod a+x /usr/local/bin/geckodriver
+#geckodriver
 
 ./microservices1.py

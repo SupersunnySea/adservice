@@ -15,7 +15,7 @@ def test_microservices(url):
     option.add_argument('--start-maximized')
     firfoxdriver = '/usr/lib64/firefox/firefox'
     binary = FirefoxBinary(firfoxdriver)
-    driver = webdriver.Firefox(firefox_binary=binary,executable_path='./geckodriver', options=option)
+    driver = webdriver.Firefox(firefox_binary=binary,executable_path='/usr/local/bin/geckodriver', options=option)
 
     driver.get(url)
     wait = WebDriverWait(driver, 50)\
