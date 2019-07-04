@@ -11,7 +11,7 @@ python -V
 pwd
 
 wget -c https://download-installer.cdn.mozilla.net/pub/firefox/releases/67.0.4/linux-x86_64/zh-CN/firefox-67.0.4.tar.bz2
-tar -zxvf firefox-67.0.4.tar.bz2
+tar -xvf firefox-67.0.4.tar.bz2
 
 find  / -name firefox
 pip3 install selenium
