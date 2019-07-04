@@ -2,7 +2,7 @@ def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
   containerTemplate(name: 'docker', image: 'docker', privileged: true, command: 'cat', ttyEnabled: true),
-  containerTemplate(name: 'python', image: 'rackspacedot/python37', command: 'cat', ttyEnabled: true)
+  containerTemplate(name: 'python', image: 'rackspacedot/python37-ansible23', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
   hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
@@ -16,7 +16,7 @@ volumes: [
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
  
     stage('Build') {
-      container('gradle') {
+      container('python') {
           sh """
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
