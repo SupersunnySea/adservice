@@ -6,13 +6,16 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 def test_microservices(url):
     option = webdriver.FirefoxOptions()
     option.add_argument('-headless')
     option.add_argument('--no-sandbox')
     option.add_argument('--start-maximized')
-    driver = webdriver.Firefox(executable_path='./geckodriver', options=option)
+    firfoxdriver = '/usr/bin/firefox'
+    binary = FirefoxBinary(firfoxdriver)
+    driver = webdriver.Firefox(firefox_binary=binary,executable_path='./geckodriver', options=option)
 
     driver.get(url)
     wait = WebDriverWait(driver, 50)\
