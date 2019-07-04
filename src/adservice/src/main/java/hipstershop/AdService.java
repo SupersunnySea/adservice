@@ -330,7 +330,7 @@ public final class AdService {
     // Expose Promtheus metrics.
     context.addServlet(new ServletHolder(new MetricsServlet()), "/metrics");
     // Add metrics about CPU, JVM memory etc.
-    //DefaultExports.initialize();deded
+    DefaultExports.initialize();
 
     // Start the webserver.
     try {
