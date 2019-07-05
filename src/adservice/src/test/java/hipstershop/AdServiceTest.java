@@ -31,7 +31,7 @@ public class AdServiceTest {
         hipstershop.Demo.Ad lens =
                 hipstershop.Demo.Ad.newBuilder()
                         .setRedirectUrl("/product/66VCHSJNUP")
-                        .setText("Vintage camera lens for sale. 60% off.")
+                        .setText("Vintage camera lens for sale. 80% off.")
                         .build();
         Collection<hipstershop.Demo.Ad> collection=new Collection<hipstershop.Demo.Ad>() {
             @Override
@@ -143,7 +143,7 @@ public class AdServiceTest {
         hipstershop.Demo.Ad lens =
                 hipstershop.Demo.Ad.newBuilder()
                         .setRedirectUrl("/product/66VCHSJNUP")
-                        .setText("Vintage camera lens for sale. 60% off.")
+                        .setText("Vintage camera lens for sale. 80% off.")
                         .build();
         hipstershop.Demo.Ad recordPlayer =
                 hipstershop.Demo.Ad.newBuilder()
